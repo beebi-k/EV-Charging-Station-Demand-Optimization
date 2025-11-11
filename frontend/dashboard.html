@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EV Dashboard | Smart Charging Map</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<body>
+
+<header class="site-header slide-down">
+  <img src="images/logo.jpg" class="logo-sm">
+  <h3>EV Charging Demand</h3>
+  <button class="btn" onclick="logout()">Logout</button>
+</header>
+
+<section class="hero fade">
+  <img src="https://images.pexels.com/photos/13005747/pexels-photo-13005747.jpeg" class="hero-img">
+  <div class="hero-title">Plan Future EV Stations</div>
+</section>
+
+<div class="container">
+
+  <aside class="panel slide-right">
+    <label>Place Name</label>
+    <input id="placeInput" placeholder="Delhi, India">
+
+    <label>Charger Type</label>
+    <select id="typeSelect">
+      <option value="0">Public AC</option>
+      <option value="1">DC Fast</option>
+      <option value="2">Private</option>
+    </select>
+
+    <button id="predictBtn" class="btn primary" onclick="predict()">Predict</button>
+    <div id="loader" class="loader hidden"></div>
+
+    <div id="predCard" class="card hidden zoom">
+      <h4 id="locTitle"></h4>
+      <p><strong>Demand Score:</strong> <span id="demandScore"></span></p>
+      <p id="predNote"></p>
+    </div>
+  </aside>
+
+  <main class="main-area fade-up">
+    <h3 class="section-title">📍 EV Station Map</h3>
+    <div id="map"></div>
+
+    <h3 class="section-title">📊 Top 5 Demand Locations</h3>
+    <canvas id="demandChart" style="width:100%; height:250px;"></canvas>
+  </main>
+</div>
+
+<!-- Floating AI Chat Bot -->
+<div class="chat-float" onclick="toggleChat()">🤖</div>
+<div id="chatPanel">
+  <div id="chatLog" class="chat-log"></div>
+  <div class="chat-input-row">
+    <input id="chatInput" placeholder="Ask battery tips...">
+    <button class="btn" style="padding:8px;font-size:.7em" onclick="sendChat()">Go</button>
+  </div>
+</div>
+
+<footer class="site-footer">© 2025 Student EV Project - Cyber Neon ⚡</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="script.js"></script>
+<script>
+  initMap();
+</script>
+
+
+</body>
+</html>
